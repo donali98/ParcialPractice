@@ -21,7 +21,7 @@ interface PokeResultService {
     @GET("pokemon")
     fun queryPokeResults(@Query("limit")limit:Int,@Query("offset")offset:Int):Deferred<Response<PokemonInfoResponse>>
     @GET("pokemon/{id}")
-    fun getPokemonInfo(@Path("id")id:Int):Deferred<Response<PokemonRetrofit>>
+    fun getPokemonInfo(@Path("id")id:Long):Deferred<Response<PokemonRetrofit>>
     companion object{
         fun getPokeResultService():PokeResultService = Retrofit.Builder()
             .baseUrl(BASE_URL)

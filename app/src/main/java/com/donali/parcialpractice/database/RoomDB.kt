@@ -6,15 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.donali.parcialpractice.database.daos.PokeResultDao
+import com.donali.parcialpractice.database.daos.PokemonDao
 import com.donali.parcialpractice.database.models.PokeResult
+import com.donali.parcialpractice.database.models.Pokemon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [PokeResult::class], version = 3, exportSchema = false)
+@Database(entities = [PokeResult::class,Pokemon::class], version = 4, exportSchema = false)
 abstract class RoomDB : RoomDatabase() {
 
     abstract fun pokeResultDao(): PokeResultDao
+    abstract fun pokemonDao(): PokemonDao
 
 
     companion object {

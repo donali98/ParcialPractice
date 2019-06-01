@@ -8,11 +8,11 @@ import com.squareup.moshi.Json
 @Entity(tableName = "poke_result")
 data class PokeResult(
 
-    @field:Json(name = "name")
+//    @field:Json(name = "name")
     @ColumnInfo(name = "name")
     var name: String,
 
-    @field:Json(name = "url")
+//    @field:Json(name = "url")
     @ColumnInfo(name = "url")
     var url: String
 ) {

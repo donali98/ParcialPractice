@@ -56,7 +56,7 @@ class ListFragment : Fragment() {
             pokeResultAdapter.setData(it)
         })
 
-        pokeResultViewModel.getPokemonInfo(1)
+        pokeResultViewModel.retreivePokemonInfo(1)
 
         return view
     }
