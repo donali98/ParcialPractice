@@ -3,6 +3,7 @@ package com.donali.parcialpractice
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +14,7 @@ import com.donali.parcialpractice.database.viewmodels.PokeResultViewModel
 import com.donali.parcialpractice.helpers.ActivityHelper
 
 class MainActivity : AppCompatActivity(),ActivityHelper {
+
 
 
     lateinit var pokeResultViewModel: PokeResultViewModel
@@ -38,4 +40,5 @@ class MainActivity : AppCompatActivity(),ActivityHelper {
     override fun getLayoutManager(): RecyclerView.LayoutManager = LinearLayoutManager(this)
 
     override fun getSharedViewModel(): PokeResultViewModel = pokeResultViewModel
+    override fun getCustomSupportFragmentManager(): FragmentManager = supportFragmentManager
 }

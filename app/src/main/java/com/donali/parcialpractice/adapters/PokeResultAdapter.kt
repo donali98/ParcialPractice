@@ -10,7 +10,7 @@ import com.donali.parcialpractice.R
 import com.donali.parcialpractice.database.models.PokeResult
 import com.donali.parcialpractice.database.viewmodels.PokeResultViewModel
 
-class PokeResultAdapter(var pokeResults:List<PokeResult>,var viewModel:PokeResultViewModel):RecyclerView.Adapter<PokeResultAdapter.ViewHolder>() {
+class PokeResultAdapter(var pokeResults:List<PokeResult>,var viewModel:PokeResultViewModel, val clickListener:(String)->Unit):RecyclerView.Adapter<PokeResultAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokeResultAdapter.ViewHolder {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.item_template,parent,false)
         return ViewHolder(item)
@@ -20,7 +20,7 @@ class PokeResultAdapter(var pokeResults:List<PokeResult>,var viewModel:PokeResul
 
 
     override fun onBindViewHolder(holder: PokeResultAdapter.ViewHolder, position: Int) {
-        holder.bind(pokeResults[position],viewModel)
+        holder.bind(pokeResults[position],viewModel,clickListener)
     }
 
     fun setData(newPokeResults:List<PokeResult>){
@@ -32,7 +32,7 @@ class PokeResultAdapter(var pokeResults:List<PokeResult>,var viewModel:PokeResul
         lateinit var tvPokeUrl:TextView
         lateinit var cbFavrotite:CheckBox
 
-        fun bind(pokeResult: PokeResult,viewModel:PokeResultViewModel) = with(itemView){
+        fun bind(pokeResult: PokeResult,viewModel:PokeResultViewModel,clickListener: (String) -> Unit) = with(itemView){
             tvPokeName = findViewById(R.id.tv_poke_name)
             tvPokeUrl = findViewById(R.id.tv_poke_url)
             cbFavrotite = findViewById(R.id.cb_favorito)
@@ -43,6 +43,9 @@ class PokeResultAdapter(var pokeResults:List<PokeResult>,var viewModel:PokeResul
 
             cbFavrotite.setOnClickListener {
                 viewModel.updateFavorite(cbFavrotite.isChecked, pokeResult.id)
+            }
+            this.setOnClickListener{
+                clickListener(pokeResult.url)
             }
         }
     }

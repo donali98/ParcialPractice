@@ -26,6 +26,19 @@ class PokeResultRepository(private val pokeResultDao: PokeResultDao) {
     suspend  fun updateFavorite(isFv:Boolean,pId:Long) = pokeResultDao.updateFavorite(isFv,pId)
 
 
+    fun getPokemonInfo(id:Int) = GlobalScope.launch (Dispatchers.IO){
+        val resp = PokeResultService.getPokeResultService().getPokemonInfo(id).await()
+        if(resp.isSuccessful){
+            with(resp){
+                Log.d("CUSTOM",this.body()!!.name)
+            }
+        }
+        else with(resp){
+            Log.e("CUSTOM",this.code().toString())
+
+        }
+    }
+
     fun retreivePokeResults() = GlobalScope.launch(Dispatchers.IO){
         if(this@PokeResultRepository.getAllPokeResultsNoLiveData().isEmpty()){
             this@PokeResultRepository.deleteAllPokeResults()

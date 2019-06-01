@@ -81,4 +81,7 @@ dependencies {
     /*Using observer anywhere*/
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
 
+    /*Picasso*/
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }

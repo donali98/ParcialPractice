@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [PokeResult::class], version = 2, exportSchema = false)
+@Database(entities = [PokeResult::class], version = 3, exportSchema = false)
 abstract class RoomDB : RoomDatabase() {
 
     abstract fun pokeResultDao(): PokeResultDao

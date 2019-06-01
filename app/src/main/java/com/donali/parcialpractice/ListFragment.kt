@@ -32,13 +32,18 @@ class ListFragment : Fragment() {
         activityHelper = context as ActivityHelper
     }
 
+    val onClickListener = fun(url:String){
+        val infoFragment = InfoFragment.newInstance(url)
+        activityHelper.getCustomSupportFragmentManager().beginTransaction().replace(R.id.fl_main,infoFragment).addToBackStack("").commit()
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list, container, false)
-        pokeResultAdapter = PokeResultAdapter(emptyList(),activityHelper.getSharedViewModel())
+        pokeResultAdapter = PokeResultAdapter(emptyList(),activityHelper.getSharedViewModel(),onClickListener)
         recyclerView = view.findViewById(R.id.rv_poke_list)
         recyclerView.apply {
             setHasFixedSize(true)
@@ -50,6 +55,9 @@ class ListFragment : Fragment() {
         pokeResultViewModel.getAllPokeResults().observe(this, Observer {
             pokeResultAdapter.setData(it)
         })
+
+        pokeResultViewModel.getPokemonInfo(1)
+
         return view
     }
 

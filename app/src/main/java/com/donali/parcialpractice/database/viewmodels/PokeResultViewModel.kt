@@ -18,7 +18,9 @@ class PokeResultViewModel(private val app:Application):AndroidViewModel(app) {
     fun retreivePokeResults() = repository.retreivePokeResults()
 
     fun getAllPokeResults () = repository.getAllPokeResults()
-    fun getAllPokeResultsNoLiveData () = repository.getAllPokeResultsNoLiveData()
+
+    fun getPokemonInfo(id:Int) = repository.getPokemonInfo(id)
+
 
     fun updateFavorite(isFv:Boolean,pId:Long) = viewModelScope.launch (Dispatchers.IO){
         repository.updateFavorite(isFv,pId)
