@@ -15,5 +15,11 @@
             android:id="@+id/tv_poke_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/cb_favorito"
+            android:textSize="20sp"
+            android:text="Favorito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

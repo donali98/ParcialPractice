@@ -25,7 +25,7 @@ class ListFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
     lateinit var activityHelper: ActivityHelper
 
-    var pokeResultAdapter = PokeResultAdapter(emptyList())
+    lateinit var pokeResultAdapter:PokeResultAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -38,6 +38,7 @@ class ListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list, container, false)
+        pokeResultAdapter = PokeResultAdapter(emptyList(),activityHelper.getSharedViewModel())
         recyclerView = view.findViewById(R.id.rv_poke_list)
         recyclerView.apply {
             setHasFixedSize(true)

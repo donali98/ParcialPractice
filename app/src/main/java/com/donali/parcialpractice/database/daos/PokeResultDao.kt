@@ -16,6 +16,12 @@ interface PokeResultDao {
     @Query("select * from poke_result")
     fun getAllPokeResults():LiveData<List<PokeResult>>
 
+    @Query("select * from poke_result")
+    fun getAllPokeResultsNoLiveData():List<PokeResult>
+
+    @Query("update  poke_result set is_favorite =:isFv where id = :pId")
+    suspend fun updateFavorite(isFv:Boolean,pId:Long)
+
     @Query("delete from poke_result")
     suspend fun deleteAllPokeResults()
 }

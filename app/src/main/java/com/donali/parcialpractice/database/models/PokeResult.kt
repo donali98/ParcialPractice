@@ -18,4 +18,6 @@ data class PokeResult(
 ) {
     @PrimaryKey(autoGenerate = true)
     var id:Long = 0
+    @ColumnInfo(name="is_favorite")
+    var isFavorite:Boolean = false
 }

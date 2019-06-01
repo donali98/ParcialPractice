@@ -20,22 +20,30 @@ class PokeResultRepository(private val pokeResultDao: PokeResultDao) {
 
 
     fun getAllPokeResults():LiveData<List<PokeResult>> = pokeResultDao.getAllPokeResults()
+    fun getAllPokeResultsNoLiveData():List<PokeResult> = pokeResultDao.getAllPokeResultsNoLiveData()
+
+    @WorkerThread
+    suspend  fun updateFavorite(isFv:Boolean,pId:Long) = pokeResultDao.updateFavorite(isFv,pId)
+
 
     fun retreivePokeResults() = GlobalScope.launch(Dispatchers.IO){
-        this@PokeResultRepository.deleteAllPokeResults()
-        val response = PokeResultService.getPokeResultService().queryPokeResults(20,0).await()
-        if(response.isSuccessful){
-            with(response){
-                this.body()?.results?.forEach {
-//                    Log.d("CUSTOM",it.name)
+        if(this@PokeResultRepository.getAllPokeResultsNoLiveData().isEmpty()){
+            this@PokeResultRepository.deleteAllPokeResults()
+            val response = PokeResultService.getPokeResultService().queryPokeResults(20,0).await()
+            if(response.isSuccessful){
+                with(response){
+                    this.body()?.results?.forEach {
+                        //                    Log.d("CUSTOM",it.name)
                         this@PokeResultRepository.insert(it)
-                }
+                    }
 
+                }
+            }
+            else with(response){
+                Log.e("CUSTOM",this.code().toString())
             }
         }
-        else with(response){
-            Log.e("CUSTOM",this.code().toString())
-        }
+
     }
 
 }
