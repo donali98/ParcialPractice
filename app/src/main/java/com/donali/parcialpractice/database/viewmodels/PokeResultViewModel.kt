@@ -13,4 +13,6 @@ class PokeResultViewModel(private val app:Application):AndroidViewModel(app) {
     }
 
     fun retreivePokeResults() = repository.retreivePokeResults()
+
+    fun getAllPokeResults () = repository.getAllPokeResults()
 }

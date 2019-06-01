@@ -27,8 +27,10 @@ class PokeResultRepository(private val pokeResultDao: PokeResultDao) {
         if(response.isSuccessful){
             with(response){
                 this.body()?.results?.forEach {
-                    Log.d("CUSTOM",it.name)
+//                    Log.d("CUSTOM",it.name)
+                        this@PokeResultRepository.insert(it)
                 }
+
             }
         }
         else with(response){
