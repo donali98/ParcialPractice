@@ -30,7 +30,7 @@ class PokeResultRepository(private val pokeResultDao: PokeResultDao) {
         val resp = PokeResultService.getPokeResultService().getPokemonInfo(id).await()
         if(resp.isSuccessful){
             with(resp){
-                Log.d("CUSTOM",this.body()!!.name)
+                Log.d("CUSTOM",this.body()!!.sprites.front_default)
             }
         }
         else with(resp){

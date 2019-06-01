@@ -7,6 +7,8 @@ class PokemonRetrofit (
     @field:Json(name = "name")
     val name:String,
     @field:Json(name="types")
-    val types:List<PokeTypeRetrofit>
+    val types:List<PokeTypeRetrofit>,
+    @field:Json(name = "sprites")
+    val sprites:SpritesRetrofit
 ){
 }
